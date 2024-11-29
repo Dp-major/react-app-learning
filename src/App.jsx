@@ -1,16 +1,30 @@
-import { useState } from 'react';
-import { CORE_CONCEPTS, EXAMPLES } from './data';
-import Header from './componnets/Header'
-import CoreConcept from './componnets/CoreConcept'
-import TabButton from './componnets/TabButton';
+import { useState } from "react";
+import { CORE_CONCEPTS, EXAMPLES } from "./data";
+import Header from "./componnets/Header";
+import CoreConcept from "./componnets/CoreConcept";
+import TabButton from "./componnets/TabButton";
 
 function App() {
-  const [ selectedTopic, setSelectedTopic ] = useState('components');
+  const [selectedTopic, setSelectedTopic] = useState();
 
   function handleSelect(selctedButton) {
     // selectedButton => 'componenets', 'jsx', 'props', 'state
-    setSelectedTopic(EXAMPLES[`${selctedButton}`])
+    setSelectedTopic(EXAMPLES[`${selctedButton}`]);
     //console.log(selectedTopic);
+  }
+
+  let tabContent = <p>Please select a topic</p>;
+
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{selectedTopic.title}</h3>
+        <p>{selectedTopic.description}</p>
+        <pre>
+          <code>{selectedTopic.code}</code>
+        </pre>
+      </div>
+    );
   }
 
   return (
@@ -20,10 +34,10 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept 
+            <CoreConcept
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
-              image={CORE_CONCEPTS[0].image} 
+              image={CORE_CONCEPTS[0].image}
             />
             <CoreConcept {...CORE_CONCEPTS[1]} />
             <CoreConcept {...CORE_CONCEPTS[2]} />
@@ -40,15 +54,7 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          <div id="tab-content">
-            <h3>{selectedTopic.title}</h3>
-            <p>{selectedTopic.description}</p>
-            <pre>
-              <code>
-                {selectedTopic.code}
-              </code>
-            </pre>
-          </div>
+          {tabContent}
         </section>
       </main>
     </div>
