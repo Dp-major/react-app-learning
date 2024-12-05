@@ -39,6 +39,11 @@ The project is set up using Vite as the build tool, which offers a faster and le
    cd react-app-learning
    npm install
 
+2. **Start Development Server:**:
+   ```bash
+   npm run dev
+
+
 **Key Files:**
 
 - `index.html`: The main HTML file.
@@ -49,6 +54,19 @@ The project is set up using Vite as the build tool, which offers a faster and le
 ## JSX and Rendering
 
 JSX is a syntax extension for JavaScript that resembles HTML. It is used with React to describe what the UI should look like. Each JSX element is syntactic sugar for calling `React.createElement()`.
+
+**Example**:
+```jsx
+// src/App.jsx
+import React from 'react';
+
+const App = () => {
+  const greeting = "Hello, React!";
+  return <h1>{greeting}</h1>;
+};
+
+export default App;
+```
 
 ## Components
 
